@@ -23,6 +23,8 @@ import importlib_metadata
 import numpy as np
 import pandas
 
+import pprint
+
 try:
     import alphafold
 except ModuleNotFoundError:
@@ -805,6 +807,9 @@ def get_msa_and_templates(
         for index in range(0, len(query_seqs_unique)):
             template_feature = mk_mock_template(query_seqs_unique[index])
             template_features.append(template_feature)
+            
+    pp = pprint.PrettyPrinter(indent=4)
+    logger.info(pp.pprint(template_features))
 
     if len(query_sequences) == 1:
         pair_mode = "none"
